@@ -30,6 +30,23 @@ public class Regex {
 	            System.out.println("mobile is not valid");
 	        }
 	  }
+	  
+	  public void validatePassword(String password){
+	        boolean isValid=true;
+	        validatePassRule1(password);
+	        }
+	    boolean validatePassRule1(String password){
+	        Pattern pattern=Pattern.compile("[\\w]{8,}");
+	        Boolean isValid=pattern.matcher(password).matches();
+	        if (isValid){
+	            System.out.println("Rule1 Pass..Valid Password");
+	        }else {
+	            System.out.println("Invalid Password! \nPassword must have minimum 8 characters");
+	        }
+	        return isValid;
+	    }
+	  
+	
 
 public static void main(String[] args) {
 	    Regex regex=new Regex();
@@ -45,11 +62,16 @@ public static void main(String[] args) {
         
         System.out.println("Enter email: ");
         String email=scanner.next();
-        regex.validateEmail(email);*/
+        regex.validateEmail(email);
         
         System.out.println("Enter mobile no as per format: (e.g. +91 1234567890) ");
         String mobileNo=scanner.nextLine();
-        regex.validateMobileNo(mobileNo);
+        regex.validateMobileNo(mobileNo);*/
+	    
+	    System.out.println("\nPassword Rule1 – minimum 8 Characters");
+        System.out.println("Enter Password:");
+        String password=scanner.next();
+        regex.validatePassword(password);
     
 	}
 	
