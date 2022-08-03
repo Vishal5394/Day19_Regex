@@ -21,6 +21,15 @@ public class Regex {
 		          }else
 		              System.out.println("email is not valid");
 		      }
+	  public void validateMobileNo(String mobileNo){
+	        Pattern pattern=Pattern.compile("^(\\+\\d{2}\\s)?[\\d]{10}$");
+	        boolean isValid = pattern.matcher(mobileNo).matches();
+	        if (isValid){
+	            System.out.println("mobile is valid");
+	        }else {
+	            System.out.println("mobile is not valid");
+	        }
+	  }
 
 public static void main(String[] args) {
 	    Regex regex=new Regex();
@@ -32,11 +41,15 @@ public static void main(String[] args) {
 
         System.out.println("\n Enter last name: ");
         String lastName=scanner.next();
-        regex.validateName(lastName);*/
+        regex.validateName(lastName);
         
         System.out.println("Enter email: ");
         String email=scanner.next();
-        regex.validateEmail(email);
+        regex.validateEmail(email);*/
+        
+        System.out.println("Enter mobile no as per format: (e.g. +91 1234567890) ");
+        String mobileNo=scanner.nextLine();
+        regex.validateMobileNo(mobileNo);
     
 	}
 	
