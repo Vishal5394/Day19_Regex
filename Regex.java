@@ -36,9 +36,10 @@ public class Regex {
 	        validatePassRule1(password);
 	        validatePassRule2(password);
 	        validatePassRule3(password);
+	        validatePassRule4(password);
 	        }
 	    boolean validatePassRule1(String password){
-	        Pattern pattern=Pattern.compile("[\\w]{8,}");
+	        Pattern pattern=Pattern.compile("^[\\w]{8,20}$");
 	        Boolean isValid=pattern.matcher(password).matches();
 	        if (isValid){
 	            System.out.println("Rule1 Pass..Valid Password");
@@ -49,7 +50,7 @@ public class Regex {
 	    }
 	    
 	    boolean validatePassRule2(String password){
-	        Pattern pattern=Pattern.compile("(?=.*[A-Z])[\\S]{8,}");
+	        Pattern pattern=Pattern.compile("^(?=.*[A-Z])[\\S]{8,20}$");
 	        Boolean isValid=pattern.matcher(password).matches();
 	        if (isValid){
 	            System.out.println("Rule2 Pass..Valid Password");
@@ -60,18 +61,27 @@ public class Regex {
 	    }
 	    
 	    Boolean validatePassRule3(String password){
-	        Pattern pattern=Pattern.compile("(?=.*[A-Z])(?=.*[0-9])[\\S]{8,}");
+	        Pattern pattern=Pattern.compile("^(?=.*[A-Z])(?=.*[0-9])[\\S]{8,20}$");
 	        Boolean isValid=pattern.matcher(password).matches();
 	        if (isValid){
 	            System.out.println("Rule3 Pass..Valid Password");
 	        }else {
-	            System.out.println("Rule3 Fail...Invalid Password! => password must have at least numeric letter");
+	            System.out.println("Rule3 Fail...Invalid Password!\n password must have at least numeric letter");
+	        }
+	        return isValid;
+	    }
+	    boolean validatePassRule4(String password){
+	        Pattern pattern=Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$");
+	        Boolean isValid=pattern.matcher(password).matches();
+	        if (isValid){
+	            System.out.println("Rule4 Pass..Valid Password");
+	        }else {
+	            System.out.println("Rule4 Fail...Invalid Password!\n password must have one special character");
 	        }
 	        return isValid;
 	    }
 	  
 	
-
 public static void main(String[] args) {
 	    Regex regex=new Regex();
 	    Scanner scanner=new Scanner(System.in);
