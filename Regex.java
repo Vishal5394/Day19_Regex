@@ -14,13 +14,15 @@ public class Regex {
 	  }
 	  
 	  public void validateEmail(String email){
-		          Pattern pattern=Pattern.compile("^[a-zA-Z0-9_'*+=~^.-]+@[a-zA-Z0-9.-]+$");
-		          boolean matches = pattern.matcher(email).matches();
-		          if (matches){
-		              System.out.println("email is valid");
-		          }else
-		              System.out.println("email is not valid");
-		      }
+	        Pattern pattern=Pattern.compile("^[a-zA-Z0-9]+([._-[+]][a-zA-Z0-9]+)*@([a-z1-9]+)([.][a-z]*)?(\\.[a-z]{2,})$");
+	        boolean isValid = pattern.matcher(email).matches();
+	        if (isValid){
+	            System.out.println("email is valid => "+email);
+	        }
+	        else
+	            System.out.println("email is not valid => "+email);
+	    }
+
 	  public void validateMobileNo(String mobileNo){
 	        Pattern pattern=Pattern.compile("^(\\+\\d{2}\\s)?[\\d]{10}$");
 	        boolean isValid = pattern.matcher(mobileNo).matches();
@@ -100,13 +102,25 @@ public static void main(String[] args) {
         
         System.out.println("Enter mobile no as per format: (e.g. +91 1234567890) ");
         String mobileNo=scanner.nextLine();
-        regex.validateMobileNo(mobileNo);*/
+        regex.validateMobileNo(mobileNo);
 	    
 	    System.out.println("\nPassword Rule1 – minimum 8 Characters"+"\nPassword Rule2 – Should have at least 1 Upper Case"
 	    						+ "\\nPassword Rule3 – at least 1 numeric number");
         System.out.println("Enter Password:");
         String password=scanner.next();
-        regex.validatePassword(password);
+        regex.validatePassword(password);*/
+        
+        System.out.println("\nValid Emails: ");
+        String[] validEmail={"abc@yahoo.com","abc-100@yahoo.com","abc.100@yahoo.com","abc111@abc.com","abc-100@abc.net","abc.100@abc.com.au","abc@1.com","abc@gmail.com.com","abc+100@gmail.com"};
+        for (String s : validEmail) {
+            regex.validateEmail(s);
+        }
+
+        System.out.println("\nInValid Emails: ");
+        String[] inValidEmail={"abc","abc@.com.my","abc123@gmail.a","abc123@.com","abc123@.com.com","abc()*@gmail.com","abc@%*.com","abc..2002@gmail.com","abc.@gmail.com","abc@abc@gmail.com","abc@gmail.com.1a","abc@gmail.com.aa.au"};
+        for (String s : inValidEmail) {
+            regex.validateEmail(s);
+        }
     
 	}
 	
